@@ -1,54 +1,33 @@
 <template name="Home_Page">
   <div class="ui container">
 
-    <table class="ui celled table" style="margin-top: 20px;">
+    {{#if Template.subscriptionsReady}}
+    <table style="margin-top: 20px" class="ui celled table">
       <thead>
-      <tr><th>First</th>
+      <tr>
+        <th>First</th>
         <th>Last</th>
         <th>Address</th>
         <th>Phone</th>
         <th>Email</th>
-      </tr></thead>
-      <tbody>
-      <tr>
-        <td>Phillip</td>
-        <td>Johnson</td>
-        <td>1680 East-West Rd., Honolulu HI</td>
-        <td>808-956-3489</td>
-        <td>johnson@hawaii.edu</td>
       </tr>
-      <tr>
-        <td>Henri</td>
-        <td>Casanova</td>
-        <td>1680 East-West Rd., Honolulu HI</td>
-        <td>808-956-2649</td>
-        <td>henric@hawaii.edu</td>
-      </tr>
-      <tr>
-        <td>Kim</td>
-        <td>Binsted</td>
-        <td>1680 East-West Rd., Honolulu HI</td>
-        <td>808-956-6107</td>
-        <td>binsted@hawaii.edu</td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr><th colspan="5">
-        <div class="ui right floated pagination menu">
-          <a class="icon item">
-            <i class="left chevron icon"></i>
-          </a>
-          <a class="item">1</a>
-          <a class="item">2</a>
-          <a class="item">3</a>
-          <a class="item">4</a>
-          <a class="icon item">
-            <i class="right chevron icon"></i>
-          </a>
-        </div>
-      </th>
-      </tr></tfoot>
-    </table>
+      </thead>
 
+      <tbody>
+      {{#each contact in contactList}}
+      <tr>
+        <td>{{contact.firstName}}</td>
+        <td>{{contact.lastName}}</td>
+        <td>{{contact.address}}</td>
+        <td>{{contact.phone}}</td>
+        <td>{{contact.email}}</td>
+      </tr>
+      {{/each}}
+      </tbody>
+
+    </table>
+    {{else}}
+    {{> Loading}}
+    {{/if}}
   </div>
 </template>
